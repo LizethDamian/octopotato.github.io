@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/pacientes.css">
+    <title>Medicos</title>
+</head>
+<body>
+    <header>
+        <h1>Hospital Infantil de México Federico Gómez</h1>
+        <div class="header-buttons">
+            <button onclick="location.href='agregarMed.html'">
+                <i class='bx bx-user-plus'></i> Agregar nuevo medico
+            </button>
+        </div>
+    </header>
+
+    <section class="patients-table">
+        <h2>Lista de Médicos</h2>
+        <section class="search-section">
+            <h2>Buscar Medico</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Ingrese el nombre">
+                <button id="searchButton">
+                    <i class='bx bx-search'></i> Buscar
+                </button>
+            </div>
+        </section>
+        <table id="patients-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cargo</th>
+                    <th>RFC</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+            </tbody>
+        </table>
+    </section>
+
+    <div class="logout-container">
+        <button onclick="location.href='index.html'" class="logout-btn">
+            <i class='bx bx-log-out'></i> Cerrar Sesión
+        </button>
+    </div>
+
+    <div id="editModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Editar Médico</h2>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                <label>Nombre:</label>
+                <input type="text" id="editName" required>
+                <label>Cargo:</label>
+                <input type="text" id="editCargo" readonly>
+                <label>RFC:</label>
+                <input type="text" id="editRfc" required>
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/editarEliminar.js" type="module"></script>
+    <script src="js/registro.js"  type="module"></script>
+    
+</body>
+</html>

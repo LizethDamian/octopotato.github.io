@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/registromed.css">
+    <title>Datos Generales</title>
+</head>
+<body>
+    <div class="container-form">
+        <h2>Datos Generales</h2>
+        <form id="registerForm" onsubmit="registerMedico(); return false;">
+            <label>
+                RFC
+                <input type="text" placeholder="Ingrese su RFC" name="RFC" 
+                       pattern="^.{13}$" 
+                       title="El RFC debe tener 13 caracteres." 
+                       required>
+            </label>
+
+            <label>
+                Nombre (s)
+                <input type="text" placeholder="Ingrese su nombre" name="Nombre" 
+                       pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" 
+                       title="El nombre solo puede contener letras." 
+                       required>
+            </label>
+
+            <label>
+                Apellido Paterno
+                <input type="text" placeholder="Ingrese su apellido paterno" name="ApellidoPa" 
+                       pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ]+$" 
+                       title="El apellido solo puede contener letras y no se permiten espacios." 
+                       required>
+            </label>
+            
+            <label>
+                Apellido Materno
+                <input type="text" placeholder="Ingrese su apellido materno" name="ApellidoMa" 
+                       pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ]+$" 
+                       title="El apellido solo puede contener letras y no se permiten espacios." 
+                       required>
+            </label>
+
+            <label>
+                Fecha de Nacimiento
+                <input type="date" placeholder="Seleccione su fecha de nacimiento" name="fechaNacimiento" 
+                       title="Debe ser mayor de 20 años." 
+                       onchange="validateAge(this)" 
+                       required>
+            </label>
+
+            <label>
+                Cargo
+                <select name="cargo" required>
+                    <option value="Cirujano">Cirujano</option>
+                    <option value="Urgentista">Urgentista</option>
+                    <option value="Enfermera">Enfermera</option>
+                    <option value="Pasante">Pasante</option>
+                    <option value="R1">R1</option>
+                    <option value="R2">R2</option>
+                </select>
+            </label>
+
+            <label>
+                Correo Electrónico
+                <input type="email" placeholder="usuario@ejemplo.com" name="usuario" id="email" required>
+            </label>
+
+            <label class="password-container">
+                Contraseña
+                <input type="password" placeholder="Ingrese su contraseña" name="Contraseña" id="password" 
+                       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" 
+                       title="Debe tener 8 caracteres, incluyendo mayúsculas, minúsculas, números y un carácter especial." 
+                       required>
+               <button class="show-password" type="button" id="showPassword" onclick="togglePassword()">Mostrar</button>
+            </label>
+            
+            <div class="password-info">
+                La contraseña debe cumplir con los siguientes requisitos:
+                <ul>
+                    <li>Al menos 8 caracteres</li>
+                    <li>Una letra mayúscula</li>
+                    <li>Una letra minúscula</li>
+                    <li>Un número</li>
+                    <li>Un carácter especial (como @$!%*?&)</li>
+                </ul>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="register-btn">Registrar</button>
+                <button type="button" class="back-btn" onclick="location.href='medicos.html'">Regresar</button>
+            </div>
+        </form>
+        <div id="alertContainer"></div>
+    </div>
+    <div class="alerta-exito" style="display: none;">Registro exitoso</div>
+    <div class="alerta-error" style="display: none;">Error en el registro</div>
+    <script>
+        const form = document.getElementById('registerForm');
+        const alertContainer = document.getElementById('alertContainer');
+
+        // Eliminamos la validación del correo electrónico
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const isValid = form.checkValidity();
+            alertContainer.innerHTML = '';
+
+            // Limpiar los indicadores de error
+            document.querySelectorAll('.error').forEach((input) => {
+                input.classList.remove('error');
+                const errorSpan = input.nextElementSibling;
+                if (errorSpan && errorSpan.classList.contains('error-message')) {
+                    errorSpan.remove();
+                }
+            });
+
+            if (isValid) {
+                alert('¡Se registró correctamente!', 'success');
+                form.reset();
+            } else {
+                alert('Todos los campos son obligatorios.', 'error');
+                highlightInvalidFields();
+            }
+        });
+
+        function highlightInvalidFields() {
+            const invalidFields = form.querySelectorAll(':invalid');
+            invalidFields.forEach(field => {
+                field.classList.add('error');
+                const errorMessage = document.createElement('span');
+                errorMessage.classList.add('error-message');
+                errorMessage.textContent = field.validationMessage;
+                field.parentElement.appendChild(errorMessage);
+            });
+        }
+
+        function showAlert(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerText = message;
+            alertContainer.appendChild(alert);
+
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        function validateAge(input) {
+            const birthDate = new Date(input.value);
+            const today = new Date();
+            const age = today.getFullYear() - birthDate.getFullYear();
+            const month = today.getMonth() - birthDate.getMonth();
+            if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            if (age < 20) {
+                input.setCustomValidity("Debes ser mayor de 20 años.");
+            } else {
+                input.setCustomValidity("");
+            }
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const passwordButton = document.querySelector('.show-password');
+            if (passwordField.type === 'password') {
+              passwordField.type = 'text';
+              passwordButton.textContent = 'Ocultar';
+            } else {
+              passwordField.type = 'password';
+              passwordButton.textContent = 'Mostrar';
+            }
+        }
+    </script>
+    <script src="js/registro.js"  type="module"></script>
+</body>
+</html>

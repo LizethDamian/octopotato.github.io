@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/pacientes.css">
+    <title>Pacientes</title>
+</head>
+<body>
+    <header>
+        <h1>Hospital Infantil de México Federico Gómez</h1>
+        <div class="header-buttons">
+            <button onclick="location.href='agregarRegi.html'">
+                <i class='bx bx-user-plus'></i> Agregar nuevo paciente
+            </button>
+        </div>
+    </header>
+
+    <section class="patients-table">
+        <h2>Lista de Pacientes</h2>
+        
+        <section class="search-section">
+            <h2>Buscar Paciente</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Ingrese el nombre">
+                <button id="searchButton">
+                    <i class='bx bx-search'></i> Buscar
+                </button>
+            </div>
+        </section>
+        
+        <table id="patients-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Nombre del tutor</th>
+                    <th>Telefono del Tutor</th>
+                    <th>Síntomas</th>
+                    <th>Método Diagnóstico</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí irán los datos de los pacientes -->
+            </tbody>
+        </table>
+    </section>
+
+    <div class="logout-container">
+        <button onclick="location.href='index.html'" class="logout-btn">
+            <i class='bx bx-log-out'></i> Cerrar Sesión
+        </button>
+    </div>
+
+    <div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Editar datos Paciente</h2>
+        <form id="editForm">
+            <input type="hidden" id="editId">
+            <div>
+                <label for="editName">Nombre:</label>
+                <input type="text" id="editName" required>
+            </div>
+            <div>
+                <label for="editFechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="editFechaNacimiento" required>
+            </div>
+            <div>
+                <label for="editnomTutor">Nombre del Tutor:</label>
+                <input type="text" id="editnomTutor" required>
+            </div>
+            <div>
+                <label for="edittelefono">Teléfono del Tutor:</label>
+                <input type="tel" id="edittelefono" required>
+            </div>
+            <div>
+                <label for="editSintomas">Síntomas:</label>
+                <input type="text" id="editSintomas" required>
+            </div>
+            <div>
+                <label for="editMetodoDiagnostico">Método diagnóstico:</label>
+                <input type="text" id="editMetodoDiagnostico" required>
+            </div>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+
+    <script src="js/editarEliminarPa.js" type="module"></script>
+    <script src="js/pacientes.js"  type="module"></script>
+    <script>
+        function searchPatient() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const table = document.getElementById("patients-table");
+            const rows = table.querySelectorAll("tbody tr");
+
+            rows.forEach(row => {
+                const name = row.querySelector("td:first-child").textContent.toLowerCase();
+                if (name.includes(searchInput)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

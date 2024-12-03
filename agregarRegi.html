@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/registropac.css">
+    <title>Datos Generales</title>
+</head>
+<body>
+    <div class="container-form register">
+        <div class="information">
+            <div class="info-childs">
+                <h2>Datos Generales</h2>
+            </div>
+        </div>
+        <div class="form-information">
+            <div class="form-information-childs">
+                <h2>Paciente</h2>
+                <form id="registerForm">
+                    <div>
+                        <label>
+                            <i class='bx bx-user'></i>
+                            <input type="text" placeholder="CURP" name="CURP" 
+                            pattern="^.{18}$" 
+                            title="El CURP debe tener 18 caracteres."
+                            required>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <i class='bx bx-user'></i>
+                            <input type="text" placeholder="Nombre (s)" name="Nombre" 
+                            pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" 
+                            title="El nombre solo puede contener letras." required>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <i class='bx bx-user'></i>
+                            <input type="text" placeholder="Apellido Paterno" name="ApellidoPa" 
+                            pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" 
+                            title="Solo se permiten letras."
+                            required>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <i class='bx bx-user'></i>
+                            <input type="text" placeholder="Apellido Materno" name="ApellidoMa" 
+                            pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" 
+                            title="Solo se permiten letras."
+                            required>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <i class='bx bx-user'></i>
+                            <input type="date" placeholder="Fecha de nacimiento" name="fechaNacimiento" 
+                            required>
+                            <small id="edadError" class="form-text text-danger" style="display: none;">El paciente debe ser menor de 18 años.</small>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <i class='bx bx-user'></i>
+                            <input type="text" placeholder="Nombre (s) Tutor" name="nombreTutor" 
+                            pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" 
+                            title="Solo se permiten letras."
+                            required>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <i class='bx bx-user'></i>
+                            <input type="text" placeholder="Apellido del Tutor" name="apellidoTutor" 
+                            pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" 
+                            title="Solo se permiten letras."
+                            required>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <i class='bx bx-user'></i>
+                            <input type="tel" placeholder="Num. Telefonico" name="telefono" 
+                            pattern="^\d{10}$" 
+                            title="Debe de contener 10 digitos."
+                            required>
+                        </label>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="register-btn" onclick="registerPatient()">Registrar</button>
+                        <button type="button" class="back-btn" onclick="location.href='pacientes.html'">Regresar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="alertContainer"></div>
+
+    <script src="js/pacientes.js" type="module"></script>
+</body>
+</html>

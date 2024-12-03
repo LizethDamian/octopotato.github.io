@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/diagnostico.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Método Diagnóstico</title>
+</head>
+<body>
+    <div class="container-form diagnostico">
+        <div class="form-information small-container">
+            <h2>Posible Enfermedad</h2>
+            <p>Enfermedad Detectada: <strong id="resultado-enfermedad"></strong></p>
+            <p>Probabilidad: <strong>85%</strong></p>
+        </div>
+
+        <div class="form-information large-container">
+            <h2>Método Diagnóstico Recomendado</h2>
+            <p>Kit-014</p>
+        </div>
+    </div>
+
+ 
+    <div class="form-buttons">
+        <button type="button" class="navigation-btn" onclick="location.href='agregarRegi.html'">Registrar Nuevo Paciente</button>
+        <button type="button" class="navigation-btn" onclick="location.href='pacientes.html'">Página Principal</button>
+    </div>
+    <div id="success-popup" class="popup">
+        <p>¡Todo ha sido guardado correctamente!</p>
+        <button onclick="cerrarPopup()">Cerrar</button>
+    </div>
+    
+    <script>
+        function cerrarPopup() {
+            document.getElementById('success-popup').style.display = 'none';
+        }
+    </script>
+    <script src="js/script.js"></script>
+    <script>
+        // Obtener el resultado del almacenamiento local
+        const resultado = localStorage.getItem('resultadoPrediccion');
+        
+        // Mostrar el resultado en el elemento correspondiente
+        document.getElementById('resultado-enfermedad').textContent = resultado ? resultado : 'No disponible';
+    </script>
+</body>
+</html>

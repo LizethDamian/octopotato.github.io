@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
+    <title>INICIO SESIÓN</title>
+</head>
+<body>
+    <div class="container-form login">
+        <div class="form-information">
+            <div class="form-information-childs">
+                <h2>Iniciar Sesión</h2>
+                <form class="form form-login" novalidate id="loginForm">
+                    <div>
+                        <label>
+                            <i class="bx bx-envelope"></i>
+                            <input type="email" id="usuario" placeholder="Ingresa tu correo" required>
+                            <span class="error-marker" id="errorUsuario">*</span>
+                        </label>
+                    </div>
+                    <div class="password-container">
+                        <label>
+                            <i class="bx bx-lock-alt"></i>
+                            <input type="password" id="password" placeholder="Contraseña" required>
+                            <span id="togglePassword" class="toggle-password">Mostrar</span>
+                            <span class="error-marker" id="errorContraseña">*</span>
+                        </label>
+                    </div>
+                    <input type="submit" value="Iniciar Sesión">
+                    <div class="alerta-error" id="alertError" style="display: none;"></div>
+                </form>
+                <!-- Enlace para recuperar contraseña -->
+                <a href="#" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a>
+
+
+                <div id="modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <span id="closeModal" class="close">&times;</span>
+                        <h3>Recuperar Contraseña</h3>
+                        <p>Introduce tu correo electrónico para restablecer tu contraseña.</p>
+                        <form id="resetPasswordForm">
+                            <input type="email" id="resetEmail" placeholder="Correo Electrónico" required>
+                            <button type="submit">Enviar</button>
+                        </form>
+                        <div id="resetSuccess" class="alerta-exito" style="display: none;">Revisa tu correo para restablecer tu contraseña.</div>
+                        <div id="resetError" class="alerta-error" style="display: none;">Error al enviar la solicitud. Intenta de nuevo.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>

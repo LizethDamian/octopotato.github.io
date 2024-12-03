@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/sintomas.css">
+    <title>Síntomas del Paciente</title>
+</head>
+<body>
+    <div class="container-form sintomas">
+        <div class="form-information small-container">
+            <h2>Signos Vitales</h2>
+            <form id="sintomas-form" class="form form-register" novalidate>
+                <div>
+                    <label>
+                        <i class='bx bx-thermometer'></i>
+                        <input type="number" placeholder="Temperatura (°C)" name="temperatura" required>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <i class='bx bx-heart'></i>
+                        <input type="text" placeholder="Presión Arterial (mmHg)" name="presionArterial" required>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <i class='bx bx-wind'></i>
+                        <input type="number" placeholder="Oxigenación (%)" name="oxigenacion" required>
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-information large-container">
+            <form id="sintomas-form" class="form form-register" novalidate>
+                <h2>Selecciona los síntomas del paciente</h2>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="fiebre" id="FB"> Fiebre</label>
+                    <label><input type="checkbox" name="tos" id="TS"> Tos</label>
+                    <label><input type="checkbox" name="odinofagia" id="ODG"> Odinofagia</label>
+                    <label><input type="checkbox" name="disnea" id="DSN"> Disnea</label>
+                    <label><input type="checkbox" name="irritabilidad" id="IRR"> Irritabilidad</label>
+                    <label><input type="checkbox" name="diarrea" id="DRA"> Diarrea</label>
+                    <label><input type="checkbox" name="dolor_toracico" id="DT"> Dolor Torácico</label>
+                    <label><input type="checkbox" name="escalofrios" id="ECF"> Escalofríos</label>
+                    <label><input type="checkbox" name="cefalea" id="CEF"> Cefalea</label>
+                    <label><input type="checkbox" name="mialgias" id="MG"> Mialgias</label>
+                    <label><input type="checkbox" name="artralgias" id="ART"> Artralgias</label>
+                    <label><input type="checkbox" name="aeg" id="AEG"> AEG</label>
+                    <label><input type="checkbox" name="rinorrea" id="RIN"> Rinorrea</label>
+                    <label><input type="checkbox" name="polipnea" id="PN"> Polipnea</label>
+                    <label><input type="checkbox" name="vomito" id="VOM"> Vomito</label>
+                    <label><input type="checkbox" name="dolor_abdominal" id="DA"> Dolor Abdominal</label>
+                    <label><input type="checkbox" name="conjuntivitis" id="CON"> Conjuntivitis</label>
+                    <label><input type="checkbox" name="cianosis" id="CIA"> Cianosis</label>
+                    <label><input type="checkbox" name="anosmia" id="AN"> Anosmia</label>
+                    <label><input type="checkbox" name="disgeusia" id="DSG"> Disgeusia</label>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="procesar-btn" onclick="enviarDatos()">Procesar</button>
+                    <button type="button" class="back-btn" onclick="location.href='agregarRegi.html'">Regresar</button>
+                    <button type="button" class="descargar-btn" onclick="exportarCSV()">Descargar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/sintomas.js"></script>
+    <script type="module" src="js/registro.js"></script>
+    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/sintomasDB.js"></script>
+</body>
+</html>
